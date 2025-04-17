@@ -1,8 +1,6 @@
 services:
   - type: web
     name: sbg-coaching
-    env: node
+    env: docker
     plan: free
-    buildCommand: ""
-    startCommand: "php -S 0.0.0.0:10000 -t dist"
-
+    dockerfilePath: ./Dockerfile
