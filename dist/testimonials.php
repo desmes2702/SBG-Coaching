@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style/min_css/main.min.css">
 </head>
 
-<body class="page__accueil" data-page="testimonials" data-variant="black" data-module="faq">
+<body class="page__accueil" data-page="testimonials" data-variant="black" data-module="faq testimonials">
 
 	<div class="wrapper-1440">
 		<?php
@@ -18,7 +18,15 @@
 	</div>
 
 	<main class="main">
-
+		<?php
+		include 'pages/testimonials/__testimonial-new.php';
+		?>
+		<?php
+		include 'pages/testimonials/__testimonials-last.php';
+		?>
+		<?php
+		include 'pages/testimonials/__testimonials-submit.php';
+		?>
 	</main>
 	<?php
 	include 'components/__faq.php';

@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style/min_css/main.min.css">
 </head>
 
-<body class="page__accueil" data-page="index" data-module="links testimonials faq">
+<body class="page__accueil" data-page="index" data-module="links faq">
 	<div class="wrapper-1440-black">
 		<?php
 		include 'components/__menu.php';
