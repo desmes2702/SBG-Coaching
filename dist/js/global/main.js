@@ -3,7 +3,7 @@ import { initMenu } from './__menu.js';
 import { initFAQ } from './__faq.js';
 import { initCoaching as initGeneralCoaching } from './__coaching.js';
 import { initLinks } from './__links.js';
-import { initTestimonial } from './__testimonial.js';
+import { initTestimonial } from './__testimonials.js';
 
 
 // 🧭 Scripts spécifiques
