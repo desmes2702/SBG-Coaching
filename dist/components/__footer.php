@@ -50,7 +50,7 @@
 					<h3>Informations</h3>
 					<li class="nav__informations__item1"><a href="index.php">Accueil</a></li>
 					<li class="nav__informations__item2"><a href="about.php">à propos</a> </li>
-					<li class="nav__informations__item3"><a href="testimonial.php">Témoignages</a></li>
+					<li class="nav__informations__item3"><a href="testimonials.php">Témoignages</a></li>
 					<li class="nav__informations__item4"><a href="contact.php">Contact</a></li>
 					<li class="footer__nav__rdv"><a href="rdv.php"><strong>Prise de rendez-vous</strong></a></li>
 				</ul>
