@@ -1,4 +1,4 @@
-<section id="business-coaching" class="business-coaching">
+<section id="business-coaching" class="business-coaching scroll-reveal">
 	<h2 class="business-coaching__title subTitle">
 		Coaching <span class="business-coaching__highlight title">Entreprise</span>
 	</h2>

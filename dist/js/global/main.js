@@ -4,6 +4,7 @@ import { initFAQ } from './__faq.js';
 import { initCoaching as initGeneralCoaching } from './__coaching.js';
 import { initLinks } from './__links.js';
 import { initTestimonial } from './__testimonials.js';
+import initScrollReveal from './__scrollReveal.js';
 
 
 // 🧭 Scripts spécifiques
@@ -32,3 +33,4 @@ initMenu(); // le menu est toujours actif
 if (modules.includes('faq')) initFAQ();
 if (modules.includes('links')) initLinks();
 if (modules.includes('testimonials')) initTestimonial();
+if (modules.includes('scrollReveal')) initScrollReveal();

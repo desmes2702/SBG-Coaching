@@ -1,4 +1,4 @@
-<div class="wrapper-982">
+<div class="wrapper-982 scroll-reveal">
 	<section class="message">
 		<div class="message__container">
 			<h2 class="message__title title">Comment SBG vous accompagne&nbsp;?</h2>

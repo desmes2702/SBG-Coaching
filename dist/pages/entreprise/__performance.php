@@ -1,5 +1,5 @@
-<div class="wrapper-1440-black">
-	<section class="coaching__entrerpise__perfo section-height90">
+<div class="wrapper-1440-black ">
+	<section class="coaching__entrerpise__perfo section-height90 scroll-reveal">
 		<h2>Une amélioration de vos performances en entreprise</h2>
 
 		<div class="coaching__entrerpise__perfo__col1">

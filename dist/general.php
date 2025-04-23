@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style/min_css/main.min.css">
 </head>
 
-<body class="page" id="page__coaching" data-variant="black" data-page="coaching-general" data-module=" coaching faq links">
+<body class="page" id="page__coaching" data-variant="black" data-page="coaching-general" data-module=" coaching faq links scrollReveal">
 
     <div class="wrapper-1440" id="page__coaching__wrapper__menu">
         <?php

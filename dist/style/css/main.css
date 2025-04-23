@@ -189,6 +189,28 @@ pre {
   transition: outline 0.2s ease-in-out;
 }
 
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(3rem) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  will-change: opacity, transform;
+  pointer-events: none;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-reveal--left {
+  transform: translateX(-4rem) scale(0.96);
+}
+
+.scroll-reveal--right {
+  transform: translateX(4rem) scale(0.96);
+}
+
 body {
   font-family: "Roboto", "Nexa", sans-serif;
   font-size: 1rem;

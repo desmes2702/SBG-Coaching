@@ -1,5 +1,5 @@
 <div class="wrapper-1440-black">
-	<section class="about__hero">
+	<section class="about__hero scroll-reveal">
 		<div class="about__hero__content">
 			<p class="about__hero__role">
 				<span class="highlight">Fondateur</span> SBG <span class="light">coaching</span>

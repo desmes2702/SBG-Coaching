@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style/min_css/main.min.css">
 </head>
 
-<body class="page__accueil" data-page="contact" data-variant="black" data-module="">
+<body class="page__accueil" data-page="contact" data-variant="black" data-module="links scrollReveal">
 
 	<div class="wrapper-1440">
 		<?php

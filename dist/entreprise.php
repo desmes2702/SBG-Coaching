@@ -10,7 +10,7 @@
 	<title>Document</title>
 </head>
 
-<body class="page" id="page__coaching" data-variant="black" data-page="coaching-entreprise" data-module="coaching faq links">
+<body class="page" id="page__coaching" data-variant="black" data-page="coaching-entreprise" data-module="coaching faq links scrollReveal">
 	<div class="wrapper-1440" id="page__coaching__wrapper__menu">
 		<?php
 		include 'components/__menu.php';

@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="style/min_css/main.min.css">
 </head>
 
-<body class="page__accueil" data-page="index" data-module="links faq">
+<body class="page__accueil" data-page="index" data-module="links faq scrollReveal">
 	<div class="wrapper-1440-black">
 		<?php
 		include 'components/__menu.php';
@@ -21,19 +21,19 @@
 		include 'pages/index/__hero.php';
 		?>
 
-		<div class="wrapper-1440">
+		<div class="wrapper-1440 scroll-reveal">
 			<?php
 			include 'pages/index/__program.php';
 			?>
 		</div>
 
-		<div class="wrapper-1440-black">
+		<div class="wrapper-1440-black ">
 			<?php
 			include 'pages/index/__coaching-business.php';
 			?>
 		</div>
 
-		<div class="wrapper-1440">
+		<div class="wrapper-1440 scroll-reveal">
 			<?php
 			include 'pages/index/__testimonials.php';
 			?>
