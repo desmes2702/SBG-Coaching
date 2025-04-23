@@ -42,13 +42,8 @@
                 <li class="menu__item menu__item__disconnect"><a href="#logout" class="menu__link">Se déconnecter</a></li>
             </ul>
         </section>
-        <div class="menu__social">
-            <a href="https://www.facebook.com/samuelbillagarciacoaching" class="menu__social-link" aria-label="Facebook">
-                <div class="social__icon social__icon-facebook"></div>
-            </a>
-            <a href="https://www.instagram.com/sambillagarcia/" class="menu__social-link" aria-label="Instagram">
-                <div class="social__icon-insta-white social__icon"></div>
-            </a>
-        </div>
+        <?php
+        include 'components/__links-social-menu.php';
+        ?>
     </nav>
 </div>

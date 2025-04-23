@@ -1,14 +1,30 @@
-<section class="home__training">
-	<h2>Un entraînement à votre échelle </h2>
-	<p>Définissons ensemble le chemin à prendre pour répondre à vos besoins et atteindre les résultats auxquels vous aspirez.</p>
-	<div class="home__training__img home__training__exemple">
-		<img class="home__training__card" src="img/home__training__card.svg" alt="exemple du profil physique d'une femme de 34 ans, d'une taille de 167 cm et d'une masse corporelle de 83 kg">
-		<img class="home__training__arrow" src="img/home__arrow.svg" alt="">
-		<img class="home__training__program" src="img/home__training__program.svg" alt="Pour répondre à son programme SBG lui propose un programme sur-mesure, de : musculation, perte de poids et revalidation">
-		<img class="home__training__graph" src="img/home__training__graph.svg" alt="En 3 mois, elle perd presque 10 kg">
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Coaching sportif professionnel, individuel et en groupe. Découvrez nos services adaptés à vos besoins et vos objectifs.">
+	<title>Programmes</title>
+	<link rel="stylesheet" href="style/min_css/main.min.css">
+</head>
+
+<body class="page__program" data-page="program" data-variant="" data-module="links">
+	<div class="wrapper-1440-black">
+		<?php
+		include 'components/__menu.php';
+		?>
 	</div>
-	<div class="home__training__img home__training__program ">
-		<img class="home__training__program1" src="img/program1.png" alt="programme sur-mesure de course de 8 minutes comprenant 6 exercices">
-		<img class="home__training__program2" src="img/program2.png" alt="prescription d'une journée type pour établir des plats adaptés selon l'heure et le profil de la personne">
+	<div class="wrapper-1440-black">
+		<section class="program__hero">
+			<h1>
+				<span>À</span><span> </span><span>v</span><span>e</span><span>n</span><span>i</span><span>r</span>
+			</h1>
+		</section>
 	</div>
-</section>
+</body>
+
+<script type="module" src="js/global/main.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</html>
