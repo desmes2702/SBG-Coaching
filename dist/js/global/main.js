@@ -6,31 +6,36 @@ import { initLinks } from './__links.js';
 import { initTestimonial } from './__testimonials.js';
 import initScrollReveal from './__scrollReveal.js';
 
-
 // 🧭 Scripts spécifiques
 import { initEntreprisePerformance } from '../coaching/entreprise/__performance.js'; 
 
-// 🔍 Variables
-const page = document.body.dataset.page;
-const modules = document.body.dataset.module?.split(' ') || [];
+// ✅ DomContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
 
-// ✅ 1. Script principal selon la page
-const routes = {
-  'coaching-entreprise': () => initEntreprisePerformance(),
-  'coaching-general': () => initGeneralCoaching(),
-};
+  // 🔍 Variables
+  const page = document.body.dataset.page; // Exemple : <body data-page="rdv">
+  const modules = document.body.dataset.module?.split(' ') || [];
 
-if (routes[page]) {
-  routes[page]();
-  console.log(`✅ Script principal activé : ${page}`);
-} else {
-  console.log(`ℹ️ Aucun script principal détecté pour : ${page}`);
-}
+  // ✅ 1. Script principal selon la page
+  const routes = {
+    'coaching-entreprise': () => initEntreprisePerformance(),
+    'coaching-general': () => initGeneralCoaching(),
+    'rdv': () => import('../rdv/__form.js').then(() => console.log('Formulaire RDV chargé')).catch(err => console.error('Erreur de chargement du formulaire RDV:', err))
+  };
 
-// ✅ 2. Modules optionnels dynamiques
-initMenu(); // le menu est toujours actif
+  if (routes[page]) {
+    routes[page]();
+    console.log(`✅ Script principal activé : ${page}`);
+  } else {
+    console.log(`ℹ️ Aucun script principal détecté pour : ${page}`);
+  }
 
-if (modules.includes('faq')) initFAQ();
-if (modules.includes('links')) initLinks();
-if (modules.includes('testimonials')) initTestimonial();
-if (modules.includes('scrollReveal')) initScrollReveal();
+  // ✅ 2. Modules optionnels dynamiques
+  initMenu(); // le menu est toujours actif
+
+  if (modules.includes('faq')) initFAQ();
+  if (modules.includes('links')) initLinks();
+  if (modules.includes('testimonials')) initTestimonial();
+  if (modules.includes('scrollReveal')) initScrollReveal();
+
+});
