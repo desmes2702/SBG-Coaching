@@ -257,6 +257,27 @@ function saveCurrentAnswer() {
     if (email) userResponses.email = email.value.trim();
   }
 }
+function updateUndertitleAccordingToStep() {
+  if (currentIndex === 5) {
+    updateUndertitle('Résumé');
+    const undertitle = document.querySelector('.form__undertitle');
+    if (undertitle) {
+      undertitle.style.margin = '0'; // 🔥 Ici on annule les marges
+    }
+  } else if (userResponses.type) {
+    updateUndertitle(userResponses.type);
+    const undertitle = document.querySelector('.form__undertitle');
+    if (undertitle) {
+      undertitle.style.margin = ''; // 🔥 On remet la marge normale
+    }
+  } else {
+    updateUndertitle('');
+    const undertitle = document.querySelector('.form__undertitle');
+    if (undertitle) {
+      undertitle.style.margin = ''; // 🔥 Idem
+    }
+  }
+}
 
 // =============================
 // Initialisation
@@ -407,7 +428,7 @@ function renderQuestion() {
           <input type="text" id="prenom" name="prenom" class="form__input" aria-required="true" placeholder="Votre prénom" />
         </div>
         <div class="form__question__group">
-          <label for="telephone" class="form__label">Numéro de téléphone *</label>
+          <label for="telephone" class="form__label">Numéro de téléphone</label>
           <input type="tel" id="telephone" name="telephone" class="form__input" placeholder="Votre numéro" />
         </div>
         <div class="form__question__group">
@@ -418,26 +439,80 @@ function renderQuestion() {
     `;
   } else if (currentIndex === 5) {
     questionHTML = `
-      <div class="form__question form__question__summary">
-        <div class="form__question__header">
-          <span class="form__question__step">${currentIndex + 1}/${questions.length}</span>
-        </div>
-        <div class="form__question__group">
-          <p><strong>Type :</strong> ${formatText(userResponses.type)}</p>
-<p><strong>Objectif :</strong> ${userResponses.objectif || '-'}</p>
-<p><strong>Âge :</strong> ${userResponses.age || '-'}</p>
-<p><strong>Fragilité :</strong> ${formatText(userResponses.fragile)}</p>
-${userResponses.precision ? `<p><strong>Précision :</strong> ${userResponses.precision}</p>` : ''}
-<p><strong>Durée :</strong> ${formatText(userResponses.duree)}</p>
-${userResponses.precisionDuree ? `<p><strong>Précision Durée :</strong> ${userResponses.precisionDuree}</p>` : ''}
-<p><strong>Nom :</strong> ${formatText(userResponses.nom)}</p>
-<p><strong>Prénom :</strong> ${formatText(userResponses.prenom)}</p>
-<p><strong>Téléphone :</strong> ${formatNumber(userResponses.telephone)}</p>
-<p><strong>Email :</strong> ${formatEmail(userResponses.email)}</p>
-        </div>
+      <div class="form__summary">
+        <fieldset class="form__summary__fieldset form__fieldset-coaching">
+          <legend>Informations coaching</legend>
+          <div class="form__wrapper">
+            <div class="form__summary__infos">
+              <p class="summary__infos__type">${formatText(userResponses.type)}</p>
+              <p class="summary__infos__duree">${formatText(userResponses.duree)}</p>
+            </div>
+  
+            <div class="form__summary__textarea">
+              <h4>Objectif</h4>
+              <p>${userResponses.objectif || '-'}</p>
+            </div>
+  
+            ${userResponses.precision ? `
+            <div class="form__summary__textarea">
+              <h4>Précisions</h4>
+              <p>${userResponses.precision}</p>
+            </div>
+            ` : ''}
+  
+          </div>
+  
+          <div class="wrapper__button">
+            <button type="button" class="form__summary__edit button button-darker" data-edit="coaching">Modifier</button>
+          </div>
+        </fieldset>
+  
+        <fieldset class="form__summary__fieldset form__fieldset-personal">
+          <legend>Informations personnelles</legend>
+          <div class="form__wrapper">
+            <div class="form__summary__infos">
+              <p class="summary__infos__personal">${formatText(userResponses.nom)} ${formatText(userResponses.prenom)}, ${userResponses.age || '-'} ans</p>
+            </div>
+  
+            <div class="form__summary__inputs">
+              <h4>Coordonnées</h4>
+              <div>
+                <p class="summary__infos__phone">${formatNumber(userResponses.telephone)}</p>
+                <p class="summary__infos__mail">${formatEmail(userResponses.email)}</p>
+              </div>
+            </div>
+          </div>
+  
+          <div class="wrapper__button">
+            <button type="button" class="form__summary__edit button button-darker" data-edit="personal">Modifier</button>
+          </div>
+        </fieldset>
+  
+        <section class="form__summary__submit">
+          <h2 class="title">Envoi du formulaire</h2>
+          <p>Toutes vos informations seront envoyées à <span>SBG Coaching</span> et nous vous répondrons le plus rapidement possible.</p>
+  
+          <div class="form__summary__legal">
+            <label>
+              <input type="checkbox" id="accept-legal" required>
+              J'accepte les <a href="/mentions-legales" target="_blank">mentions légales</a> et les <a href="/conditions-utilisation" target="_blank">conditions d'utilisation</a>.
+            </label>
+          </div>
+  
+          <div class="form__summary__recaptcha">
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+          </div>
+  
+          <div class="wrapper__button">
+            <button type="submit" class="button button-red">Envoyer</button>
+          </div>
+  
+        </section>
+  
       </div>
     `;
   }
+  
 
   formWrapper.innerHTML = questionHTML;
 
@@ -445,7 +520,7 @@ ${userResponses.precisionDuree ? `<p><strong>Précision Durée :</strong> ${user
     if (userResponses.type) {
       const selected = document.querySelector(`input[name="type"][value="${userResponses.type}"]`);
       if (selected) selected.checked = true;
-      updateUndertitle(userResponses.type);
+      updateUndertitle(userResponses.type || '');
     }
     const radios = document.querySelectorAll('input[name="type"]');
     radios.forEach(radio => {
@@ -541,6 +616,14 @@ ${userResponses.precisionDuree ? `<p><strong>Précision Durée :</strong> ${user
       const emailInput = document.getElementById('email');
       if (emailInput) emailInput.value = userResponses.email;
     }
+  } if (currentIndex === 5) {
+    formWrapper.style.border = 'none';
+    nextBtn.style.opacity = '0.2';
+    nextBtn.disabled = true;
+  } else {
+    formWrapper.style.border = ''; // Remettre bordure normale
+    nextBtn.style.opacity = '1';
+    nextBtn.disabled = false;
   }
 
   updateTimeline();
@@ -561,14 +644,21 @@ function updateTimeline() {
 }
 
 function updateNavigation() {
-  if (currentIndex === 0) {
-    backBtn.style.opacity = '0.2';
-    backBtn.style.pointerEvents = 'none'; // Désactive le hover et le clic
+  backBtn.hidden = currentIndex === 0;
+
+  if (currentIndex === 5) {
+    nextBtn.disabled = true;
+    nextBtn.style.opacity = '0.2';
+    nextBtn.classList.add('no-hover'); // 🔥 On ajoute une classe spéciale
   } else {
-    backBtn.style.opacity = '1';
-    backBtn.style.pointerEvents = 'auto'; // Réactive hover et clic
+    nextBtn.disabled = false;
+    nextBtn.style.opacity = '1';
+    nextBtn.classList.remove('no-hover'); // 🔥 On enlève la classe
   }
+
+  updateUndertitleAccordingToStep(); // 🔥 Nouvelle ligne propre ici
 }
+
 
 // =============================
 // Navigation (Back / Next)

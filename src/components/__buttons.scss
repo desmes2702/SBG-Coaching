@@ -32,4 +32,16 @@
 	  background-color: $secondary-color;
 	  color: white;
 	}
+	&-darker{
+		background-color: $darker-color;
+	}
+	
   }
+
+  
+.no-hover:hover {
+	background: inherit;
+	color: inherit;
+	cursor: default;
+}
+  

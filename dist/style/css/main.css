@@ -1131,6 +1131,15 @@ button.rotated {
   background-color: #2F2F2F;
   color: white;
 }
+.button-darker {
+  background-color: #222222;
+}
+
+.no-hover:hover {
+  background: inherit;
+  color: inherit;
+  cursor: default;
+}
 
 .social {
   display: flex;
@@ -2651,6 +2660,16 @@ button.rotated {
   width: 100%;
   max-width: 600px !important;
 }
+@media (max-width: 40.5625rem) {
+  .form__container {
+    min-height: calc(100vh - 230.19px - 96px);
+  }
+}
+@media (min-width: 40.625rem) {
+  .form__container {
+    min-height: calc(100vh - 156.59px - 96px);
+  }
+}
 .form__container .form__question__group, .form__container fieldset {
   border: none;
 }
@@ -2684,7 +2703,7 @@ button.rotated {
   color: white;
   width: 100%;
   text-align: left;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 .form__container h2 {
   color: white;
@@ -2946,6 +2965,191 @@ button.rotated {
     width: 50px;
   }
 }
+.form__summary__undertitle > h3 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.form__summary fieldset {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 12px 0 0 0;
+  text-align: left;
+}
+.form__summary fieldset legend {
+  font-family: "Nexa", "Roboto", sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding-right: 12px;
+  font-style: normal !important;
+}
+.form__summary__fieldset * {
+  color: white;
+}
+.form__summary__fieldset .form__wrapper {
+  padding: 1rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border: 1px solid rgba(240, 240, 240, 0.2);
+  border-radius: 5px;
+}
+.form__summary__fieldset .form__wrapper * {
+  text-align: left;
+}
+.form__summary__fieldset .form__wrapper > div:not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+.form__summary__fieldset .form__wrapper p {
+  margin-bottom: 0;
+}
+.form__summary__textarea > h4, .form__summary__inputs > h4 {
+  width: 100%;
+  text-align: left;
+  font-size: 12px;
+  font-family: "Roboto", "Nexa", sans-serif;
+  font-weight: 300;
+  opacity: 0.5;
+}
+.form__summary__textarea > p, .form__summary__inputs > p {
+  padding: 1rem;
+  border: 1px solid rgba(240, 240, 240, 0.2);
+  border-radius: 5px;
+  width: 100%;
+}
+.form__summary .form__summary__infos, .form__summary .form__summary__textarea {
+  width: 100%;
+}
+.form__summary .form__summary__infos {
+  width: 100%;
+}
+.form__summary .form__summary__infos > p {
+  padding-left: 1.5rem;
+  position: relative;
+}
+.form__summary .form__fieldset-coaching {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.form__summary .form__fieldset-coaching .form__summary__infos {
+  display: flex;
+}
+.form__summary .form__fieldset-coaching .form__summary__infos p:not(:last-child) {
+  margin-right: 1.5rem;
+}
+.form__summary .form__fieldset-personal {
+  margin-bottom: 3rem;
+}
+.form__summary .form__fieldset-personal .form__summary__inputs {
+  width: 100%;
+}
+.form__summary .form__fieldset-personal .form__summary__inputs > div {
+  padding: 1rem;
+  border: 1px solid rgba(240, 240, 240, 0.2);
+  border-radius: 5px;
+  width: 100%;
+}
+.form__summary .form__summary__infos > p,
+.form__summary .form__summary__inputs > div > p {
+  position: relative;
+  padding-left: 2rem;
+}
+.form__summary .form__summary__infos > p::before,
+.form__summary .form__summary__inputs > div > p::before {
+  content: "";
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  top: 0px;
+  left: 0rem;
+  width: 24px;
+  height: 24px;
+}
+.form__summary .summary__infos__type {
+  position: relative;
+}
+.form__summary .summary__infos__type::before {
+  background-image: url("../../img/icon__form__type.svg");
+}
+.form__summary .summary__infos__duree {
+  position: relative;
+}
+.form__summary .summary__infos__duree::before {
+  background-image: url("../../img/icon__form__duree.svg");
+}
+.form__summary .summary__infos__personal {
+  position: relative;
+}
+.form__summary .summary__infos__personal::before {
+  background-image: url("../../img/icon__form__personal.svg");
+}
+.form__summary .summary__infos__phone {
+  margin-bottom: 12px !important;
+}
+.form__summary .summary__infos__phone::before {
+  background-image: url("../../img/icon__form__phone.svg");
+}
+.form__summary .summary__infos__mail::before {
+  background-image: url("../../img/icon__form__mail.svg");
+}
+.form__summary .wrapper__button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+.form__summary .form__summary__submit {
+  padding: 3rem 0;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+.form__summary .form__summary__submit * {
+  color: white;
+}
+.form__summary .form__summary__submit h2 {
+  margin-bottom: 5px !important;
+  font-weight: 800 !important;
+  text-align: left;
+}
+.form__summary .form__summary__submit p {
+  opacity: 0.5;
+  text-align: left;
+}
+.form__summary .form__summary__submit .form__summary__legal {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.form__summary .form__summary__submit .form__summary__legal input[type=checkbox] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #FF00AA;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: relative;
+  border-radius: 3px;
+  top: 1px;
+  margin-right: 5px;
+}
+.form__summary .form__summary__submit .form__summary__legal input[type=checkbox]:checked::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  background-image: url("../../img/icon__form__check__rdv.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 3px;
+}
+
 .about__hero {
   display: flex;
   flex-direction: column;
