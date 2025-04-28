@@ -122,15 +122,6 @@ body {
 	color: $secondary-color;
   }
   
-  // ===============================
-  // ACCESSIBILITÉ VISUELLE
-  // ===============================
-  
-  :focus-visible {
-	outline: 2px solid $primary-color;
-	outline-offset: 2px;
-	transition: outline 0.2s ease-in-out;
-  }
   
   // ===============================
   // HERO RESPONSIVE

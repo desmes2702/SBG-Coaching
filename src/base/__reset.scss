@@ -69,16 +69,40 @@ pre {
 // ===============================
 
 :focus {
-	outline: 2px solid $primary-color;
-	outline-offset: 2px;
-  }
+	
+  outline: none;
+}
   
-  :focus:not(:focus-visible) {
+:focus:not(:focus-visible) {
 	outline: none;
-  }
+}
   
-  :focus-visible {
-	outline: 2px solid $primary-color;
-	outline-offset: 2px;
-	transition: outline 0.2s ease-in-out;
+:focus-visible {
+	
+  outline: none;
+}
+
+textarea{
+    resize: none;
+}
+
+/* Pour Chrome, Safari, Edge */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Pour Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input,
+  textarea {
+
+    &:focus, &:focus-visible, &:hover {
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.25);
+      transition: box-shadow 0.3s ease-in-out, 
+    }
   }

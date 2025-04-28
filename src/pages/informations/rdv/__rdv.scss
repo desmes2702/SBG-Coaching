@@ -2,9 +2,11 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 2rem 1rem;
 	width: 100%;
 	max-width: 600px !important;
+	
+
+	
 
 	.form__question__group,fieldset{
 		border: none;
@@ -156,10 +158,17 @@
 	.form__question__group{
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 		width: 100%;
 		height: 100%;
 		margin-top: 2rem;
 		transition: opacity 0.3s ease-in-out;
+
+		.form__legend{
+			width: 100%;
+			text-align: left;
+			margin-bottom: 12px;
+		}
 	}
 
 	input[type="text"], input[type="number"],input[type="tel"], input[type="email"],
@@ -170,7 +179,10 @@
 		padding: 12px;
 		width: 100%;
 		height: 100%;
-		
+		&:focus, &:focus-visible, &:hover {
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			transition: border 0.3s ease-in-out, box-shadow 0.4s ease-in-out;
+		}
 	}
 
 	textarea{
@@ -189,7 +201,7 @@
 	
 	.form__back,
 	.form__next {
-	  width: 60px;
+	  width: 65px;
 	  height: 60px;
 	  background-size: contain;
 	  background-repeat: no-repeat;
@@ -282,6 +294,35 @@
 			/* transition: border .5s ease-in-out; */
 		  }
 	  }
+	}
+
+	@media (max-width: 450px) {
+		.form__question__choices-grid{
+			display: grid;
+			grid-template-columns: auto auto;
+			grid-row-gap: 5px;
+			justify-content: center;
+			align-items: center;
+
+			.form__question__choice{
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				span{
+					text-align: left;
+				}
+				input{
+					top: -1px;
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+
+	@media (min-width: 451px) {
+		h1{
+			text-align: center !important;
+		}
 	}
 
 	@media (max-width: $breakpoint-mobile-max) {

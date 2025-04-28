@@ -1,3 +1,5 @@
+import { formatText, formatNumber, formatEmail } from '../global/__utils.js';
+
 // =============================
 // Variables principales
 // =============================
@@ -87,13 +89,131 @@ function isCurrentQuestionValid() {
   return true;
 }
 
-function showValidationError() {
+function showValidationError(selector) {
   const formQuestion = document.querySelector('.form__question');
-  formQuestion.classList.add('form__question-error');
+  let errorMessage = '';
 
-  setTimeout(() => {
-    formQuestion.classList.remove('form__question-error');
-  }, 500);
+  if (currentIndex === 0) {
+    errorMessage = "Veuillez choisir Entreprise ou Particulier.";
+  } 
+  else if (currentIndex === 1) {
+    errorMessage = "Merci de préciser votre objectif sportif (minimum 10 caractères).";
+  }
+  else if (currentIndex === 2) {
+    const ageInput = document.getElementById('age');
+    const fragileChoice = document.querySelector('input[name="fragile"]:checked');
+    const precisionTextarea = document.getElementById('precision');
+
+    if (!ageInput || !(ageInput.value >= 1 && ageInput.value <= 120)) {
+      errorMessage = "Veuillez entrer un âge valide (entre 1 et 120 ans).";
+      selector = '#age';
+    } else if (!fragileChoice) {
+      errorMessage = "Merci d'indiquer si vous avez une fragilité ou non.";
+      selector = 'input[name="fragile"]';
+    } else if (fragileChoice.value === 'oui' && (!precisionTextarea || precisionTextarea.value.trim().length < 5)) {
+      errorMessage = "Merci de préciser votre fragilité physique.";
+      selector = '#precision';
+    } else {
+      errorMessage = "Veuillez renseigner votre âge et votre état de santé.";
+    }
+  }
+  else if (currentIndex === 3) {
+    const dureeChoice = document.querySelector('input[name="duree"]:checked');
+    const precisionDureeTextarea = document.getElementById('precision-duree');
+
+    if (!dureeChoice) {
+      errorMessage = "Veuillez sélectionner une durée de coaching.";
+      selector = 'input[name="duree"]';
+    } else if (dureeChoice.value === 'autre' && (!precisionDureeTextarea || precisionDureeTextarea.value.trim().length < 5)) {
+      errorMessage = "Merci de préciser la durée de votre coaching.";
+      selector = '#precision-duree';
+    } else {
+      errorMessage = "Veuillez sélectionner une durée de coaching.";
+    }
+  }
+  else if (currentIndex === 4) {
+    const nom = document.getElementById('nom');
+    const prenom = document.getElementById('prenom');
+    const email = document.getElementById('email');
+
+    const nomValid = nom && nom.value.trim().length >= 2;
+    const prenomValid = prenom && prenom.value.trim().length >= 2;
+    const emailValid = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+
+    if (!nomValid) {
+      errorMessage = "Merci d'indiquer un nom valide (au moins 2 lettres).";
+      selector = '#nom';
+    } else if (!prenomValid) {
+      errorMessage = "Merci d'indiquer un prénom valide (au moins 2 lettres).";
+      selector = '#prenom';
+    } else if (!emailValid) {
+      errorMessage = "Merci de saisir une adresse email valide.";
+      selector = '#email';
+    } else {
+      errorMessage = "Merci de compléter vos coordonnées (le n° de téléphone n'est pas obligatoire).";
+    }
+  }
+  else {
+    errorMessage = "Veuillez remplir correctement ce champ.";
+  }
+
+  formQuestion.classList.add('form__question--error');
+
+  let errorBlock = formQuestion.querySelector('.form__error');
+  if (!errorBlock) {
+    errorBlock = document.createElement('div');
+    errorBlock.classList.add('form__error');
+    formQuestion.appendChild(errorBlock);
+  }
+
+  errorBlock.textContent = errorMessage;
+
+  // 🔥 Ajout du focus directement
+  if (selector) {
+    focusOnError(selector);
+  }
+
+  enableAutoClearError(); // L'utilisateur pourra enlever l'erreur quand il corrige
+}
+
+
+
+function enableAutoClearError() {
+  const formQuestion = document.querySelector('.form__question');
+  const errorBlock = formQuestion.querySelector('.form__error');
+  if (!errorBlock) return;
+
+  // Écoute tous les inputs/textareas dans la question actuelle
+  const inputs = formQuestion.querySelectorAll('input, textarea');
+
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      if (isCurrentQuestionValid()) {
+        errorBlock.remove(); // Supprime l'erreur visuellement
+      }
+    });
+
+    // Pour les radios : écouter changement aussi
+    input.addEventListener('change', () => {
+      if (isCurrentQuestionValid()) {
+        errorBlock.remove();
+      }
+    });
+  });
+}
+
+function focusOnError(selector) {
+  const field = document.querySelector(selector);
+  if (field) {
+    field.focus({ preventScroll: true });
+
+    const rect = field.getBoundingClientRect();
+    const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+    if (!isVisible) {
+      field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 }
 
 function saveCurrentAnswer() {
@@ -218,7 +338,7 @@ function renderQuestion() {
         </div>
         <div class="form__question__group">
           <p class="form__label">Avez-vous une fragilité/handicap physique ? *</p>
-          <div class="form__question__choices">
+          <div class="form__question__choices form__question__choices-grid">
             <label class="form__question__choice">
               <input type="radio" name="fragile" value="oui" aria-required="true" />
               <span>Oui</span>
@@ -245,9 +365,9 @@ function renderQuestion() {
         <div class="form__question__header">
           <span class="form__question__step">${currentIndex + 1}/${questions.length}</span>
         </div>
-        <fieldset class="form__fieldset">
+        <fieldset class="form__fieldset form__question__group">
           <legend class="form__legend">Durée de votre coaching *</legend>
-          <div class="form__question__choices">
+          <div class="form__question__choices form__question__choices-grid">
             <label class="form__question__choice">
               <input type="radio" name="duree" value="3 mois" aria-required="true" />
               <span>3 mois</span>
@@ -303,25 +423,130 @@ function renderQuestion() {
           <span class="form__question__step">${currentIndex + 1}/${questions.length}</span>
         </div>
         <div class="form__question__group">
-          <p><strong>Type :</strong> ${userResponses.type || '-'}</p>
-          <p><strong>Objectif :</strong> ${userResponses.objectif || '-'}</p>
-          <p><strong>Âge :</strong> ${userResponses.age || '-'}</p>
-          <p><strong>Fragilité :</strong> ${userResponses.fragile || '-'}</p>
-          ${userResponses.precision ? `<p><strong>Précision :</strong> ${userResponses.precision}</p>` : ''}
-          <p><strong>Durée :</strong> ${userResponses.duree || '-'}</p>
-          ${userResponses.precisionDuree ? `<p><strong>Précision Durée :</strong> ${userResponses.precisionDuree}</p>` : ''}
-          <p><strong>Nom :</strong> ${userResponses.nom || '-'}</p>
-          <p><strong>Prénom :</strong> ${userResponses.prenom || '-'}</p>
-          <p><strong>Téléphone :</strong> ${userResponses.telephone || '-'}</p>
-          <p><strong>Email :</strong> ${userResponses.email || '-'}</p>
+          <p><strong>Type :</strong> ${formatText(userResponses.type)}</p>
+<p><strong>Objectif :</strong> ${userResponses.objectif || '-'}</p>
+<p><strong>Âge :</strong> ${userResponses.age || '-'}</p>
+<p><strong>Fragilité :</strong> ${formatText(userResponses.fragile)}</p>
+${userResponses.precision ? `<p><strong>Précision :</strong> ${userResponses.precision}</p>` : ''}
+<p><strong>Durée :</strong> ${formatText(userResponses.duree)}</p>
+${userResponses.precisionDuree ? `<p><strong>Précision Durée :</strong> ${userResponses.precisionDuree}</p>` : ''}
+<p><strong>Nom :</strong> ${formatText(userResponses.nom)}</p>
+<p><strong>Prénom :</strong> ${formatText(userResponses.prenom)}</p>
+<p><strong>Téléphone :</strong> ${formatNumber(userResponses.telephone)}</p>
+<p><strong>Email :</strong> ${formatEmail(userResponses.email)}</p>
         </div>
       </div>
     `;
   }
 
   formWrapper.innerHTML = questionHTML;
+
+  if (currentIndex === 0) {
+    if (userResponses.type) {
+      const selected = document.querySelector(`input[name="type"][value="${userResponses.type}"]`);
+      if (selected) selected.checked = true;
+      updateUndertitle(userResponses.type);
+    }
+    const radios = document.querySelectorAll('input[name="type"]');
+    radios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        updateUndertitle(e.target.value);
+        animateUndertitle();
+      });
+    });
+
+  } else if (currentIndex === 1) {
+    const textarea = document.getElementById('objectif');
+    if (textarea && userResponses.objectif) {
+      textarea.value = userResponses.objectif;
+    }
+
+  } else if (currentIndex === 2) {
+    const ageInput = document.getElementById('age');
+    if (ageInput && userResponses.age) ageInput.value = userResponses.age;
+
+    const precisionTextarea = document.getElementById('precision');
+    if (precisionTextarea && userResponses.precision) {
+      precisionTextarea.value = userResponses.precision;
+    }
+
+    const radiosFragile = document.querySelectorAll('input[name="fragile"]');
+    if (userResponses.fragile) {
+      const selectedFragile = document.querySelector(`input[name="fragile"][value="${userResponses.fragile}"]`);
+      if (selectedFragile) selectedFragile.checked = true;
+    }
+
+    function updatePrecisionFragile() {
+      const selected = document.querySelector('input[name="fragile"]:checked');
+      if (selected && selected.value === 'oui') {
+        precisionTextarea.disabled = false;
+        precisionTextarea.parentElement.style.opacity = '1';
+      } else {
+        precisionTextarea.disabled = true;
+        precisionTextarea.parentElement.style.opacity = '0.2';
+        precisionTextarea.value = '';
+      }
+    }
+
+    radiosFragile.forEach(radio => {
+      radio.addEventListener('change', updatePrecisionFragile);
+    });
+
+    updatePrecisionFragile();
+
+  } else if (currentIndex === 3) {
+    const precisionDureeTextarea = document.getElementById('precision-duree');
+    if (precisionDureeTextarea && userResponses.precisionDuree) {
+      precisionDureeTextarea.value = userResponses.precisionDuree;
+    }
+
+    const radiosDuree = document.querySelectorAll('input[name="duree"]');
+    if (userResponses.duree) {
+      const selectedDuree = document.querySelector(`input[name="duree"][value="${userResponses.duree}"]`);
+      if (selectedDuree) selectedDuree.checked = true;
+    }
+
+    function updatePrecisionDuree() {
+      const selected = document.querySelector('input[name="duree"]:checked');
+      if (selected && selected.value === 'autre') {
+        precisionDureeTextarea.disabled = false;
+        precisionDureeTextarea.parentElement.style.opacity = '1';
+      } else {
+        precisionDureeTextarea.disabled = true;
+        precisionDureeTextarea.parentElement.style.opacity = '0.2';
+        precisionDureeTextarea.value = '';
+      }
+    }
+
+    radiosDuree.forEach(radio => {
+      radio.addEventListener('change', updatePrecisionDuree);
+    });
+
+    updatePrecisionDuree();
+
+  } else if (currentIndex === 4) {
+    if (userResponses.nom) {
+      const nomInput = document.getElementById('nom');
+      if (nomInput) nomInput.value = userResponses.nom;
+    }
+    if (userResponses.prenom) {
+      const prenomInput = document.getElementById('prenom');
+      if (prenomInput) prenomInput.value = userResponses.prenom;
+    }
+    if (userResponses.telephone) {
+      const telephoneInput = document.getElementById('telephone');
+      if (telephoneInput) telephoneInput.value = userResponses.telephone;
+    }
+    if (userResponses.email) {
+      const emailInput = document.getElementById('email');
+      if (emailInput) emailInput.value = userResponses.email;
+    }
+  }
+
   updateTimeline();
 }
+
+
 
 function updateTimeline() {
   const circles = document.querySelectorAll('.form__timeline__circle');
@@ -336,7 +561,13 @@ function updateTimeline() {
 }
 
 function updateNavigation() {
-  backBtn.hidden = currentIndex === 0;
+  if (currentIndex === 0) {
+    backBtn.style.opacity = '0.2';
+    backBtn.style.pointerEvents = 'none'; // Désactive le hover et le clic
+  } else {
+    backBtn.style.opacity = '1';
+    backBtn.style.pointerEvents = 'auto'; // Réactive hover et clic
+  }
 }
 
 // =============================
@@ -345,18 +576,26 @@ function updateNavigation() {
 
 nextBtn.addEventListener('click', () => {
   if (!isCurrentQuestionValid()) {
-    showValidationError();
+    if (currentIndex === 0) {
+      showValidationError('input[name="type"]'); // Focus sur le premier radio
+    } else if (currentIndex === 1) {
+      showValidationError('#objectif');
+    } else if (currentIndex === 2) {
+      showValidationError('#age');
+    } else if (currentIndex === 3) {
+      showValidationError('input[name="duree"]'); // Pareil ici
+    } else if (currentIndex === 4) {
+      showValidationError('#nom');
+    }
     return;
   }
 
   saveCurrentAnswer();
-
-  if (currentIndex < questions.length - 1) {
-    currentIndex++;
-    renderQuestion();
-    updateNavigation();
-  }
+  currentIndex++;
+  renderQuestion();
+  updateNavigation();
 });
+
 
 backBtn.addEventListener('click', () => {
   if (currentIndex > 0) {
