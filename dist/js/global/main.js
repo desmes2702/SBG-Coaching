@@ -20,7 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const routes = {
     'coaching-entreprise': () => initEntreprisePerformance(),
     'coaching-general': () => initGeneralCoaching(),
-    'rdv': () => import('../rdv/__form.js').then(() => console.log('Formulaire RDV chargé')).catch(err => console.error('Erreur de chargement du formulaire RDV:', err))
+    'rdv': async () => {
+      try {
+        await import('../rdv/__form.js');
+        console.log('Formulaire RDV chargé');
+        await import('../rdv/__sendForm.js');
+        console.log('Envoi du formulaire RDV prêt');
+      } catch (err) {
+        console.error('Erreur de chargement sur la page RDV:', err);
+      }
+    }
   };
 
   if (routes[page]) {

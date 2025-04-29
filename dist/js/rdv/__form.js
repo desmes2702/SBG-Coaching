@@ -83,7 +83,7 @@ function isCurrentQuestionValid() {
     const telephoneValid = telephone && telephone.value.trim().length >= 8;
     const emailValid = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
 
-    return nomValid && prenomValid && telephoneValid && emailValid;
+    return nomValid && prenomValid && emailValid;
   }
 
   return true;
@@ -620,6 +620,10 @@ function renderQuestion() {
     formWrapper.style.border = 'none';
     nextBtn.style.opacity = '0.2';
     nextBtn.disabled = true;
+    import('./__sendForm.js').then(module => {
+      module.attachSendListener();
+    });
+    
   } else {
     formWrapper.style.border = ''; // Remettre bordure normale
     nextBtn.style.opacity = '1';
@@ -628,7 +632,6 @@ function renderQuestion() {
 
   updateTimeline();
 }
-
 
 
 function updateTimeline() {
@@ -694,6 +697,43 @@ backBtn.addEventListener('click', () => {
     updateNavigation();
   }
 });
+
+// 1. EventListener pour les boutons Modifier
+document.addEventListener('click', function (e) {
+  if (e.target.matches('.form__summary__edit')) {
+    const editType = e.target.dataset.edit;
+    handleEditButton(editType);
+  }
+});
+
+// 2. Fonction pour gérer le retour à la bonne étape
+function handleEditButton(type) {
+  if (type === 'coaching') {
+    currentIndex = 0; // Retour au début du formulaire
+  } else if (type === 'personal') {
+    currentIndex = 4; // Retour aux coordonnées
+  }
+
+  renderQuestion();
+  updateNavigation();
+  formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  /* highlightEditedField(); */
+}
+
+/* function highlightEditedField() {
+  const formQuestion = document.querySelector('.form__question');
+  if (!formQuestion) return;
+
+  formQuestion.classList.add('form__edit-highlight');
+
+  // Retirer la classe après 1,5s pour que ce soit temporaire
+  setTimeout(() => {
+    formQuestion.classList.remove('form__edit-highlight');
+  }, 1500);
+} */
+
+
 
 // =============================
 // Lancement

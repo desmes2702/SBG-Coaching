@@ -336,4 +336,23 @@
 			width: 50px;
 	  }
 	}
+
+	.form__edit-highlight {
+		animation: highlightBorder 1.5s ease forwards;
+	  }
+	  
+	  @keyframes highlightBorder {
+		0% {
+		  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.0);
+		  border: 1px solid rgba(255, 255, 255, 0.0);
+		}
+		50% {
+		  box-shadow: 0 5px 30px rgba(0, 0, 0, 5);
+		  border: 1px solid rgba(255, 255, 255, 0.35);
+		}
+		100% {
+		  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.0);
+		  border: 1px solid rgba(255, 255, 255, 0.0);
+		}
+	  }
   
