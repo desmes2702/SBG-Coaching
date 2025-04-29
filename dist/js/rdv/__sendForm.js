@@ -5,7 +5,7 @@ function sendFormData() {
 	  return;
 	}
   
-	const formData = new FormData();
+	/* const formData = new FormData();
   
 	for (const key in userResponses) {
 	  formData.append(key, userResponses[key]);
@@ -29,10 +29,10 @@ function sendFormData() {
 	.catch(error => {
 	  console.error(error);
 	  alert('Erreur réseau. Veuillez réessayer.');
-	});
+	}); */
   }
   
-  export function attachSendListener() {
+  /* export function attachSendListener() {
 	const submitBtn = document.querySelector('.form__summary__submit button[type="submit"]');
 	if (submitBtn) {
 	  submitBtn.addEventListener('click', function (e) {
@@ -40,5 +40,5 @@ function sendFormData() {
 		sendFormData();
 	  });
 	}
-  }
+  } */
   

@@ -22,10 +22,6 @@
 		include 'pages/rdv/__form.php';
 		?>
 
-
-		<?php
-		include 'pages/rdv/__sendForm.php';
-		?>
 		</div>
 	</main>
 	<script type="module" src="js/global/main.js"></script>

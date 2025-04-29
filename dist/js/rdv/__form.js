@@ -620,9 +620,9 @@ function renderQuestion() {
     formWrapper.style.border = 'none';
     nextBtn.style.opacity = '0.2';
     nextBtn.disabled = true;
-    import('./__sendForm.js').then(module => {
+    /* import('./__sendForm.js').then(module => {
       module.attachSendListener();
-    });
+    }); */
     
   } else {
     formWrapper.style.border = ''; // Remettre bordure normale
