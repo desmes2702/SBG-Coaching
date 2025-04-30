@@ -9,13 +9,13 @@
 		En collaboration avec <strong>UDH</strong>, pour l'accès à la salle de sport et le coaching en entreprise.
 	</p>
 
-	<div class="business-coaching__media" aria-label="Vidéo de présentation">
-		<div class="business-coaching__video-container">
-			<iframe src="//www.rtl.be/videos/player/vp_embed.js?videoid=873500"
-				class="business-coaching__video"
-				allowfullscreen
-				title="Vidéo de présentation du coaching en entreprise">
-			</iframe>
+	<div class="business-coaching__media coaching__hero__wrapper" aria-label="Vidéo de présentation">
+		<div class="business-coaching__video-container video-wrapper">
+			<video
+				src="videos/rtlTvi.mp4"
+				controls class="business-coaching__video">
+				Votre navigateur ne prend pas en charge la lecture vidéo.
+			</video>
 		</div>
 	</div>
 

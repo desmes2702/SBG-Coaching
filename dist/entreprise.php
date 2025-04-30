@@ -18,6 +18,7 @@
 	</div>
 
 	<main class="main">
+
 		<?php
 		include 'pages/entreprise/__hero.php';
 		?>

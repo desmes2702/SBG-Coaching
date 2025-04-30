@@ -1,7 +1,7 @@
 // 🌐 Modules globaux (même dossier que main.js)
 import { initMenu } from './__menu.js';
 import { initFAQ } from './__faq.js';
-import { initCoaching as initGeneralCoaching } from './__coaching.js';
+import { initCoaching } from './__coaching.js';
 import { initLinks } from './__links.js';
 import { initTestimonial } from './__testimonials.js';
 import initScrollReveal from './__scrollReveal.js';
@@ -18,8 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ✅ 1. Script principal selon la page
   const routes = {
-    'coaching-entreprise': () => initEntreprisePerformance(),
-    'coaching-general': () => initGeneralCoaching(),
+    'coaching-entreprise': async () => {
+      const { heroContents } = await import('../coaching/entreprise/__heroContents.js');
+      initCoaching(heroContents);
+      initEntreprisePerformance();
+    },
+    'coaching-general': async () => {
+      const { heroContents } = await import('../coaching/general/__heroContents.js');
+      initCoaching(heroContents);
+    },
+
     'rdv': async () => {
       try {
         await import('../rdv/__form.js');

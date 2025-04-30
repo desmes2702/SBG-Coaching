@@ -1648,6 +1648,7 @@ button.rotated {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 1024px !important;
 }
 .business-coaching * {
   color: white;
@@ -1672,18 +1673,21 @@ button.rotated {
   margin-bottom: 2rem;
   width: 100%;
 }
-.business-coaching__media {
-  width: 100%;
-}
-.business-coaching .VideoPlayer > * {
-  border-radius: 5px !important;
-}
 .business-coaching__quote {
   position: relative;
   margin: 0;
-  padding: 2rem 0 0 0;
+  padding: 2rem 0 0 2.4rem;
   margin-bottom: 2rem;
-  max-width: 800px;
+}
+.business-coaching__quote::before {
+  content: "";
+  position: absolute;
+  top: 28px;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background: url("../../img/icon__temoignage.svg") no-repeat center;
+  background-size: contain;
 }
 .business-coaching__quote-text {
   margin-bottom: 10px;
@@ -1693,6 +1697,8 @@ button.rotated {
   width: 100%;
   text-align: right;
   font-family: "Roboto", "Nexa", sans-serif;
+  font-weight: 500;
+  text-decoration: underline;
 }
 .business-coaching__cta {
   padding: 2.5rem 2rem 1.5rem 2rem;
@@ -1711,25 +1717,28 @@ button.rotated {
   margin-bottom: 2rem;
 }
 
-.business-coaching__video-container {
+.business-coaching____media {
   width: 100%;
-  max-width: 800px;
-  height: 100%;
-  max-height: 500px;
-  margin: 0 auto;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+}
+
+.business-coaching__video-container {
+  border-radius: 5px;
   position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: black;
   overflow: hidden;
 }
 
 .business-coaching__video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  border: none;
+  width: 100%;
+  background-color: transparent;
+  object-fit: cover;
+  display: block;
 }
 
 @media (min-width: 48rem) {
@@ -1949,6 +1958,7 @@ button.rotated {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 .coaching__hero #content-main .hero__content__btn-disabled {
   opacity: 0.5;
@@ -1999,23 +2009,8 @@ button.rotated {
   color: white;
 }
 .coaching__hero #content-1 h1 {
-  font-family: "Nexa", "Roboto", sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  font-style: normal !important;
-  text-transform: uppercase;
-  padding: 0 0 5px 2rem;
-  position: relative;
   width: 100%;
   max-width: 708px;
-}
-.coaching__hero #content-1 h1::before {
-  content: url(../../img/icon__temoignage.svg);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 24px;
-  height: 24px;
 }
 .coaching__hero #content-1 h1 span {
   font-family: "Roboto", sans-serif;
@@ -2038,18 +2033,20 @@ button.rotated {
 .coaching__hero .coaching__hero__content-bck3 {
   background-image: url("../../img/entreprise__post3.svg");
 }
-.coaching__hero #content-1.hero__content--deductible {
+.coaching__hero #content-1 .coaching__hero__content-bck3 {
+  background-image: none;
+  background-color: #2F2F2F;
   border: 1px solid #2F2F2F;
 }
-.coaching__hero #content-1.hero__content--deductible h1 {
+.coaching__hero #content-1 .coaching__hero__content-bck3 h1 {
   color: #FF00AA;
   padding: 0;
   font-weight: 600;
 }
-.coaching__hero #content-1.hero__content--deductible h1::before {
+.coaching__hero #content-1 .coaching__hero__content-bck3 h1::before {
   display: none;
 }
-.coaching__hero #content-1.hero__content--deductible p {
+.coaching__hero #content-1 .coaching__hero__content-bck3 p {
   color: #2F2F2F;
 }
 .coaching__hero .coaching__hero__social {
@@ -2060,9 +2057,17 @@ button.rotated {
   margin-top: 48px;
 }
 
+@media (max-width: 450px) {
+  h1 span {
+    display: block;
+  }
+}
 @media (min-width: 40.625rem) {
   .coaching__hero__content__bck {
     padding: 4rem 2rem 1.5rem 2rem !important;
+    border-radius: 5px;
+  }
+  .coaching__hero__content__bck video {
     border-radius: 5px;
   }
 }
@@ -2097,6 +2102,28 @@ button.rotated {
     margin: 0;
   }
 }
+@media (max-width: 63.9375rem) {
+  /* .coaching__hero__video .video-wrapper {
+    position: relative;
+
+    &::after {
+  	content: '';
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	height: 30%;
+  	background: linear-gradient(to bottom, black, transparent);
+  	pointer-events: none;
+  	z-index: 1;
+    }
+
+    video {
+  	position: relative;
+  	z-index: 0;
+    }
+  } */
+}
 @media (min-width: 1024px) {
   .coaching__hero {
     display: grid;
@@ -2119,7 +2146,101 @@ button.rotated {
     top: -2.5rem;
     opacity: 0.8;
   }
+  /* .coaching__hero__video .video-wrapper {
+  	position: relative;
+
+  	&::after {
+  	  content: '';
+  	  position: absolute;
+  	  top: 0;
+  	  left: 0;
+  	  width: 100%;
+  	  height: 30%;
+  	  background: linear-gradient(to top, transparent, $secondary-color);
+  	  opacity: 0.3;
+  	  pointer-events: none;
+  	  z-index: 1;
+  	}
+
+  	video {
+  	  position: relative;
+  	  z-index: 0;
+  	}
+    } */
 }
+@media (min-width: 1024px) and (min-width: 1024px) and (max-width: 1100px) {
+  .coaching__hero__content-primary h1 span {
+    display: block;
+  }
+}
+.coaching__hero__video {
+  padding: 0 !important;
+  background: black;
+}
+.coaching__hero__video .video-wrapper {
+  border-radius: 5px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: black;
+  overflow: hidden;
+}
+.coaching__hero__video .video-wrapper > video {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  object-fit: cover;
+  display: block;
+}
+.coaching__hero__video .coaching__hero__video .video-wrapper {
+  position: relative;
+}
+.coaching__hero__video .coaching__hero__video .video-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, black, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.coaching__hero__video .coaching__hero__video .video-wrapper video {
+  position: relative;
+  z-index: 0;
+}
+
+.coaching__hero__video .video-wrapper {
+  position: relative;
+}
+.coaching__hero__video .video-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background: linear-gradient(to bottom, black, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+.coaching__hero__video .video-wrapper video {
+  position: relative;
+  z-index: 0;
+}
+
+.coaching__hero__content-primary {
+  background-color: #2F2F2F;
+  color: white;
+}
+.coaching__hero__content-primary h1, .coaching__hero__content-primary p, .coaching__hero__content-primary a, .coaching__hero__content-primary span {
+  color: white;
+}
+.coaching__hero__content-primary h1 {
+  padding: 0 !important;
+}
+
 .coaching__entrerpise__perfo {
   width: 100%;
   display: flex;
@@ -2720,8 +2841,7 @@ button.rotated {
   font-style: italic;
   font-weight: 500;
 }
-
-.form__timeline {
+.form__container .form__timeline {
   width: 100%;
   max-width: 600px;
   margin: 0 auto 3rem auto;
@@ -2731,8 +2851,7 @@ button.rotated {
   color: #ffffff;
   text-align: center;
 }
-
-.form__wrapper {
+.form__container .form__wrapper {
   width: 100%;
   min-height: 100px;
   display: flex;
@@ -2742,10 +2861,10 @@ button.rotated {
   border: 1px solid rgba(240, 240, 240, 0.2);
   border-radius: 5px;
 }
-.form__wrapper * {
+.form__container .form__wrapper * {
   color: white;
 }
-.form__wrapper .form__question {
+.form__container .form__wrapper .form__question {
   width: 100%;
   min-height: 200px;
   height: 100%;
@@ -2756,7 +2875,7 @@ button.rotated {
   flex-direction: column;
   padding: 1rem;
 }
-.form__wrapper .form__question__header {
+.form__container .form__wrapper .form__question__header {
   position: absolute;
   height: 14px;
   left: 12px;
@@ -2765,31 +2884,31 @@ button.rotated {
   justify-content: center;
   align-items: center;
 }
-.form__wrapper .form__question__header span {
+.form__container .form__wrapper .form__question__header span {
   font-size: 12px;
   color: rgba(255, 255, 255, 0.2);
   width: 100%;
   height: 100%;
 }
-.form__wrapper .form__question__choice input {
+.form__container .form__wrapper .form__question__choice input {
   margin-right: 5px;
   position: relative;
   top: 1px;
 }
-.form__wrapper .form__question__choice:not(:last-child) {
+.form__container .form__wrapper .form__question__choice:not(:last-child) {
   margin-right: 1rem;
 }
-.form__wrapper .form__question .form__legend {
+.form__container .form__wrapper .form__question .form__legend {
   margin-bottom: 1.5rem;
   font-style: italic;
 }
-.form__wrapper .form__question .form__label {
+.form__container .form__wrapper .form__question .form__label {
   font-style: italic;
   text-align: left;
   width: 100%;
   margin-bottom: 12px;
 }
-.form__wrapper .form__question--error {
+.form__container .form__wrapper .form__question--error {
   animation: shake 0.3s;
 }
 @keyframes shake {
@@ -2809,7 +2928,7 @@ button.rotated {
     transform: translateX(0);
   }
 }
-.form__wrapper .form__question__group {
+.form__container .form__wrapper .form__question__group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2818,13 +2937,13 @@ button.rotated {
   margin-top: 2rem;
   transition: opacity 0.3s ease-in-out;
 }
-.form__wrapper .form__question__group .form__legend {
+.form__container .form__wrapper .form__question__group .form__legend {
   width: 100%;
   text-align: left;
   margin-bottom: 12px;
 }
-.form__wrapper input[type=text], .form__wrapper input[type=number], .form__wrapper input[type=tel], .form__wrapper input[type=email],
-.form__wrapper textarea {
+.form__container .form__wrapper input[type=text], .form__container .form__wrapper input[type=number], .form__container .form__wrapper input[type=tel], .form__container .form__wrapper input[type=email],
+.form__container .form__wrapper textarea {
   background-color: rgba(30, 30, 30, 0.2392156863);
   border: 1px solid rgba(240, 240, 240, 0.2);
   border-radius: 5px;
@@ -2832,26 +2951,25 @@ button.rotated {
   width: 100%;
   height: 100%;
 }
-.form__wrapper input[type=text]:focus, .form__wrapper input[type=text]:focus-visible, .form__wrapper input[type=text]:hover, .form__wrapper input[type=number]:focus, .form__wrapper input[type=number]:focus-visible, .form__wrapper input[type=number]:hover, .form__wrapper input[type=tel]:focus, .form__wrapper input[type=tel]:focus-visible, .form__wrapper input[type=tel]:hover, .form__wrapper input[type=email]:focus, .form__wrapper input[type=email]:focus-visible, .form__wrapper input[type=email]:hover,
-.form__wrapper textarea:focus,
-.form__wrapper textarea:focus-visible,
-.form__wrapper textarea:hover {
+.form__container .form__wrapper input[type=text]:focus, .form__container .form__wrapper input[type=text]:focus-visible, .form__container .form__wrapper input[type=text]:hover, .form__container .form__wrapper input[type=number]:focus, .form__container .form__wrapper input[type=number]:focus-visible, .form__container .form__wrapper input[type=number]:hover, .form__container .form__wrapper input[type=tel]:focus, .form__container .form__wrapper input[type=tel]:focus-visible, .form__container .form__wrapper input[type=tel]:hover, .form__container .form__wrapper input[type=email]:focus, .form__container .form__wrapper input[type=email]:focus-visible, .form__container .form__wrapper input[type=email]:hover,
+.form__container .form__wrapper textarea:focus,
+.form__container .form__wrapper textarea:focus-visible,
+.form__container .form__wrapper textarea:hover {
   border: 1px solid rgba(255, 255, 255, 0.3);
   transition: border 0.3s ease-in-out, box-shadow 0.4s ease-in-out;
 }
-.form__wrapper textarea {
+.form__container .form__wrapper textarea {
   height: 100%;
 }
-
-.form__navigation {
+.form__container .form__navigation {
   width: 100%;
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   gap: 2rem;
 }
-.form__navigation .form__back,
-.form__navigation .form__next {
+.form__container .form__navigation .form__back,
+.form__container .form__navigation .form__next {
   width: 65px;
   height: 60px;
   background-size: contain;
@@ -2862,34 +2980,33 @@ button.rotated {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
-.form__navigation .form__back:hover,
-.form__navigation .form__next:hover {
+.form__container .form__navigation .form__back:hover,
+.form__container .form__navigation .form__next:hover {
   transform: scale(1.1);
 }
-.form__navigation .form__back {
+.form__container .form__navigation .form__back {
   display: block;
   background-image: url("../../img/icon__back__rdv.svg");
   max-width: 24px;
 }
-.form__navigation .form__next {
+.form__container .form__navigation .form__next {
   display: block;
   background-image: url("../../img/icon__next__rdv.svg");
 }
-
-.form__timeline {
+.form__container .form__timeline {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 }
-.form__timeline__step {
+.form__container .form__timeline__step {
   display: flex;
   align-items: center;
 }
-.form__timeline__step:last-child .form__timeline__line {
+.form__container .form__timeline__step:last-child .form__timeline__line {
   display: none;
 }
-.form__timeline__circle {
+.form__container .form__timeline__circle {
   width: 5px;
   height: 5px;
   background-color: white;
@@ -2898,7 +3015,7 @@ button.rotated {
   position: relative;
   margin: 0 16px;
 }
-.form__timeline__circle::before {
+.form__container .form__timeline__circle::before {
   content: "";
   position: absolute;
   top: -5px;
@@ -2908,67 +3025,65 @@ button.rotated {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 50%;
 }
-.form__timeline__line {
+.form__container .form__timeline__line {
   height: 1px;
   background-color: white;
   opacity: 0.2;
 }
-.form__timeline__circle-viewed {
+.form__container .form__timeline__circle-viewed {
   background-color: #ffffff;
   opacity: 1;
 }
-.form__timeline__circle-reading {
+.form__container .form__timeline__circle-reading {
   background-color: #FF00AA;
   opacity: 1;
 }
-.form__timeline__circle-reading, .form__timeline__circle-viewed {
+.form__container .form__timeline__circle-reading, .form__container .form__timeline__circle-viewed {
   transition: background-color 0.5s ease-in-out;
 }
-.form__timeline__circle-reading::before, .form__timeline__circle-viewed::before {
+.form__container .form__timeline__circle-reading::before, .form__container .form__timeline__circle-viewed::before {
   border: 1px solid rgba(255, 255, 255, 0) !important;
   /* transition: border .5s ease-in-out; */
 }
-
 @media (max-width: 450px) {
-  .form__question__choices-grid {
+  .form__container .form__question__choices-grid {
     display: grid;
     grid-template-columns: auto auto;
     grid-row-gap: 5px;
     justify-content: center;
     align-items: center;
   }
-  .form__question__choices-grid .form__question__choice {
+  .form__container .form__question__choices-grid .form__question__choice {
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
-  .form__question__choices-grid .form__question__choice span {
+  .form__container .form__question__choices-grid .form__question__choice span {
     text-align: left;
   }
-  .form__question__choices-grid .form__question__choice input {
+  .form__container .form__question__choices-grid .form__question__choice input {
     top: -1px;
     margin-right: 8px;
   }
 }
 @media (min-width: 451px) {
-  h1 {
-    text-align: center !important;
+  .form__container h1 {
+    text-align: center;
   }
 }
 @media (max-width: 47.9375rem) {
-  .form__timeline__line {
+  .form__container .form__timeline__line {
     width: 25px;
   }
 }
 @media (min-width: 48rem) {
-  .form__timeline__line {
+  .form__container .form__timeline__line {
     width: 50px;
   }
 }
-.form__edit-highlight {
+.form__container .form__edit-highlight {
   animation: highlightBorder 1.5s ease forwards;
 }
-
 @keyframes highlightBorder {
   0% {
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0);
@@ -2983,6 +3098,7 @@ button.rotated {
     border: 1px solid rgba(255, 255, 255, 0);
   }
 }
+
 .form__summary__undertitle > h3 {
   color: rgba(255, 255, 255, 0.5);
   font-size: 12px;

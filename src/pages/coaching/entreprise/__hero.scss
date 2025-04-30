@@ -79,6 +79,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			z-index: 2;
 
 			&-disabled {
 				opacity: .5;
@@ -144,25 +145,9 @@
 		}
 
 		h1 {
-			font-family: "Nexa", "Roboto", sans-serif;
-			font-size: 16px;
-			font-weight: 300;
-			font-style: normal !important;
-			text-transform: uppercase;
-			padding: 0 0 5px 2rem;
-			position: relative;
 			width: 100%;
 			max-width: 708px;
-
-			&::before {
-				content: url(../../img/icon__temoignage.svg);
-				position: absolute;
-				left: 0;
-				top: 0;
-				width: 24px;
-				height: 24px;
-			}
-
+			
 			span {
 				font-family: "Roboto", sans-serif;
 				font-style: italic;
@@ -194,21 +179,26 @@
 		}
 
 	//switch avec content-3
-	#content-1.hero__content--deductible {
-		h1 {
-			color: $primary-color;
-			padding: 0;
-			font-weight: 600;
-			&::before{
-				display: none;
+	#content-1 .coaching__hero__content-bck3{
+		 
+			background-image: none;
+			background-color: $secondary-color;
+			h1 {
+				color: $primary-color;
+				padding: 0;
+				font-weight: 600;
+				&::before{
+					display: none;
+				}
 			}
-		}
-		p {
-			color: $secondary-color;
-		}
-		border: 1px solid $secondary-color;
+			p {
+				color: $secondary-color;
+			}
+			border: 1px solid $secondary-color;
+			}
 		
-	}
+		
+	
 
 	.coaching__hero__social {
 		display: flex;
@@ -220,11 +210,21 @@
 
 }
 
+@media(max-width: 450px) {
+		h1 span{
+				display: block;
+		}
+}
+	
+
 
 @media (min-width:$breakpoint-menu){
 	.coaching__hero__content__bck{
 		padding: 4rem 2rem 1.5rem 2rem !important;
 		border-radius: 5px;
+		video{
+			border-radius: 5px;
+		}
 	}
 }
 //HERO__ENTREPRISE-768+MAX1023
@@ -266,6 +266,28 @@
 	}
 }
 
+@media (max-width: $breakpoint-tablet-max) {
+	/* .coaching__hero__video .video-wrapper {
+	  position: relative;
+  
+	  &::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 30%;
+		background: linear-gradient(to bottom, black, transparent);
+		pointer-events: none;
+		z-index: 1;
+	  }
+  
+	  video {
+		position: relative;
+		z-index: 0;
+	  }
+	} */
+  }
 //HERO__ENTREPRISE-1024
 @media (min-width: 1024px) {
 	.coaching__hero {
@@ -293,4 +315,119 @@
 			}
 		}
 	}
+
+	@media(min-width: 1024px) and (max-width: 1100px) {
+		.coaching__hero__content-primary {
+			h1 span{
+					display: block;
+			}
+		}
+	}
+	/* .coaching__hero__video .video-wrapper {
+		position: relative;
+	  
+		&::after {
+		  content: '';
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 30%;
+		  background: linear-gradient(to top, transparent, $secondary-color);
+		  opacity: 0.3;
+		  pointer-events: none;
+		  z-index: 1;
+		}
+	  
+		video {
+		  position: relative;
+		  z-index: 0;
+		}
+	  } */
 }
+
+//slide 2
+
+.coaching__hero__video {
+	padding: 0 !important;
+	background: black;
+	.video-wrapper {
+		border-radius: 5px;
+		position: relative;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		background: black;
+		overflow: hidden;
+	  
+		> video {
+		  width: 100%;
+		  height: 100%;
+		  background-color: transparent;
+		  object-fit: cover;
+		  display: block;
+		}
+	  
+	}
+
+	.coaching__hero__video .video-wrapper {
+	  position: relative;
+  
+	  &::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 30%;
+		background: linear-gradient(to bottom, black, transparent);
+		pointer-events: none;
+		z-index: 1;
+	  }
+  
+	  video {
+		position: relative;
+		z-index: 0;
+	  }
+	}
+  }
+
+  .coaching__hero__video .video-wrapper {
+	position: relative;
+
+	&::after {
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 20%;
+	  background: linear-gradient(to bottom, black, transparent);
+	  pointer-events: none;
+	  z-index: 1;
+	}
+
+	video {
+	  position: relative;
+	  z-index: 0;
+	}
+  }
+
+  //slide 3
+  .coaching__hero__content-primary {
+	background-color: $secondary-color;
+	color: white;
+  
+	h1, p, a, span {
+	  color: white;
+	  
+	  
+	}
+
+	h1{
+		padding: 0!important;
+		
+	}
+  
+	}
+  
+  
