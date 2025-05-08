@@ -33,7 +33,7 @@
 		<p class="business-coaching__cta-text">
 			Vous êtes une entreprise à la recherche de solutions pour booster la motivation et le bien-être de vos collaborateurs ?
 		</p>
-		<a href="#contact" class="button button-black" aria-label="En savoir plus sur le coaching en entreprise">
+		<a href="entreprise.php" class="button button-black" aria-label="En savoir plus sur le coaching en entreprise">
 			En savoir plus
 		</a>
 	</div>

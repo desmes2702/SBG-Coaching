@@ -7,10 +7,24 @@ import { initTestimonial } from './__testimonials.js';
 import initScrollReveal from './__scrollReveal.js';
 
 // 🧭 Scripts spécifiques
-import { initEntreprisePerformance } from '../coaching/entreprise/__performance.js'; 
+import { initEntreprisePerformance } from '../coaching/entreprise/__performance.js';
 
 // ✅ DomContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+
+  // 🔧 Utilitaire : attendre qu’un élément apparaisse dans le DOM
+  function waitForElement(selector, callback) {
+    const el = document.querySelector(selector);
+    if (el) return callback(el);
+    const observer = new MutationObserver(() => {
+      const el = document.querySelector(selector);
+      if (el) {
+        observer.disconnect();
+        callback(el);
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
 
   // 🔍 Variables
   const page = document.body.dataset.page; // Exemple : <body data-page="rdv">
@@ -23,9 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
       initCoaching(heroContents);
       initEntreprisePerformance();
     },
+
     'coaching-general': async () => {
       const { heroContents } = await import('../coaching/general/__heroContents.js');
-      initCoaching(heroContents);
+      waitForElement('#page__coaching__wrapper__hero', () => {
+        initCoaching(heroContents);
+      });
     },
 
     'rdv': async () => {
@@ -54,5 +71,4 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modules.includes('links')) initLinks();
   if (modules.includes('testimonials')) initTestimonial();
   if (modules.includes('scrollReveal')) initScrollReveal();
-
 });

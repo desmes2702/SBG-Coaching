@@ -1888,9 +1888,6 @@ button.rotated {
   padding: 0;
 }
 
-.coaching__hero {
-  /* Classes pour les backgrounds */
-}
 .coaching__hero-col1 {
   width: 100%;
   position: relative;
@@ -2023,15 +2020,6 @@ button.rotated {
   border: 1px solid var(--primary-color);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-.coaching__hero .coaching__hero__content-bck1 {
-  background-image: url("../../img/entreprise__post-1.png");
-}
-.coaching__hero .coaching__hero__content-bck2 {
-  background-image: url("../../img/entreprise__post2.png");
-}
-.coaching__hero .coaching__hero__content-bck3 {
-  background-image: url("../../img/entreprise__post3.svg");
 }
 .coaching__hero #content-1 .coaching__hero__content-bck3 {
   background-image: none;
@@ -2239,6 +2227,17 @@ button.rotated {
 }
 .coaching__hero__content-primary h1 {
   padding: 0 !important;
+}
+
+/* Classes pour les backgrounds */
+body[data-page=coaching-entreprise] .coaching__hero__content-bck1 {
+  background-image: url("../../img/entreprise__post-1.png");
+}
+body[data-page=coaching-entreprise] .coaching__hero__content-bck2 {
+  background-image: url("../../img/entreprise__post2.png");
+}
+body[data-page=coaching-entreprise] .coaching__hero__content-bck3 {
+  background-image: url("../../img/entreprise__post3.svg");
 }
 
 .coaching__entrerpise__perfo {
@@ -2520,6 +2519,51 @@ button.rotated {
     right: -9vw;
   }
 }
+body[data-page=coaching-general] .coaching__hero__content-bck1 {
+  background-image: url("../../img/general__post1.png");
+}
+body[data-page=coaching-general] .coaching__hero__content-bck2 {
+  background-image: url("../../img/testimonial__christian.png");
+}
+body[data-page=coaching-general] .coaching__hero__content-bck3 {
+  background-image: url("../../img/testimonial__justin.png");
+}
+body[data-page=coaching-general] .coaching__hero__content-secondary {
+  position: relative;
+  overflow: hidden;
+}
+body[data-page=coaching-general] .coaching__hero__content-secondary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), transparent 40%, rgba(0, 0, 0, 0.6));
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+body[data-page=coaching-general] .coaching__hero__content-secondary:hover::after {
+  opacity: 1;
+}
+body[data-page=coaching-general] .coaching__hero__content-secondary .gallery__button {
+  position: relative;
+  z-index: 2;
+}
+
+.coaching__hero__content-secondary {
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+.coaching__hero__content-secondary:hover {
+  transform: scale(1.02);
+}
+.coaching__hero__content-secondary .gallery__button {
+  position: relative;
+  z-index: 2;
+  width: fit-content;
+  height: 30px;
+}
+
 .coaching__types {
   display: flex;
   flex-direction: column;

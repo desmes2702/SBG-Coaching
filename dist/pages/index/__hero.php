@@ -6,7 +6,7 @@
 				<h1 class="hero__title title">Le seul mauvais entraînement est celui que l'on ne fait pas</h1>
 				<p class="hero__subtitle">Votre corps mérite l'effort, votre esprit mérite la discipline. Ensemble, nous transformerons chaque excuse en une victoire personnelle. Faites le premier pas, le reste suivra.</p>
 				<div class="hero__photo"></div>
-				<a href="https://instagram.com/post1" class="hero__cta button button-red" aria-label="prendre rendez-vous">Prendre rendez-vous</a>
+				<a href="rdv.php" class="hero__cta button button-red" aria-label="prendre rendez-vous">Prendre rendez-vous</a>
 			</div>
 
 		</section>

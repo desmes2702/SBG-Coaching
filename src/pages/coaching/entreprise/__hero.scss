@@ -164,19 +164,7 @@
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	}
 
-	/* Classes pour les backgrounds */
-	.coaching__hero__content-bck1 {
-		background-image: url("../../img/entreprise__post-1.png");
-		
-		}
 	
-		.coaching__hero__content-bck2 {
-		background-image: url("../../img/entreprise__post2.png");
-		}
-	
-		.coaching__hero__content-bck3 {
-		background-image: url("../../img/entreprise__post3.svg");
-		}
 
 	//switch avec content-3
 	#content-1 .coaching__hero__content-bck3{
@@ -430,4 +418,18 @@
   
 	}
   
-  
+  /* Classes pour les backgrounds */
+  body[data-page="coaching-entreprise"] {
+	.coaching__hero__content-bck1 {
+		background-image: url("../../img/entreprise__post-1.png");
+		
+		}
+	
+		.coaching__hero__content-bck2 {
+		background-image: url("../../img/entreprise__post2.png");
+		}
+	
+		.coaching__hero__content-bck3 {
+		background-image: url("../../img/entreprise__post3.svg");
+		}
+	}

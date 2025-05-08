@@ -18,15 +18,12 @@
 	</div>
 
 	<main class="main">
-
 		<?php
 		include 'pages/entreprise/__hero.php';
 		?>
-
 		<?php
 		include 'pages/entreprise/__performance.php';
 		?>
-
 		<?php
 		include 'pages/entreprise/__improve.php';
 		?>
